@@ -1,0 +1,106 @@
+1)Find the duplicate number
+ans:
+class Solution {
+    public int findDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        int ans = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == nums[i + 1]) {
+                ans = nums[i];
+            }
+        }
+
+        return ans;
+    }
+}
+
+2)Number of good pairs
+ans:
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        
+        int ans = 0;
+        int[] count = new int[101];
+        
+        for(int n: nums)
+            count[n]++;
+        
+        for(int n: count)
+            ans += (n * (n - 1))/2;
+        
+        return ans;
+    }
+}
+
+3)Find common greatest advisor of array
+ans:
+class Solution {
+    public int findGCD(int[] nums) {
+        Arrays.sort(nums);
+        int n=nums[nums.length-1];
+        int result=nums[0];
+        while(result>0){
+            if(nums[0]%result==0 && n%result==0){
+                break;
+            }
+            result--;
+        }
+        return result;
+    }
+}
+4)Unique Number Of Occurrence
+ans:
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        HashSet<Integer> set = new HashSet<>();
+        for(int i=0;i<arr.length;i++){
+            if(map.containsKey(arr[i]))
+                map.put(arr[i],map.get(arr[i])+1);
+            else
+                map.put(arr[i],1);
+        }
+        for(Map.Entry<Integer,Integer> e: map.entrySet())
+            if(!set.add(e.getValue())) return false;
+            return true;
+    }
+}
+5)Find all duplicates in array
+ans:
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int max=0;
+        for(int i=0;i<nums.length;i++){
+            max=Math.max(max,nums[i]);
+        }
+        int[] arr=new int[max+1];
+        for(int i=0;i<nums.length;i++){
+            if(arr[nums[i]]!=0) list.add(nums[i]);
+            else arr[nums[i]]++;
+        }
+        
+        // HashSet<Integer> set=new HashSet<>();
+        // for(int i=0;i<nums.length;i++){
+        //     if(set.contains(nums[i])) list.add(nums[i]);
+        //     else set.add(nums[i]);
+        // }
+        // HashMap<Integer,Integer> map=new HashMap<>();
+        // for(int i=0;i<nums.length;i++){
+        //     if(!map.containsKey(nums[i])){
+        //         map.put(nums[i],1);
+        //         // System.out.println(map);
+        //     }
+        //     else{
+        //         map.put(nums[i],map.get(nums[i])+1);
+        //     }
+        // }
+        // for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+        //     if(entry.getValue()==2) list.add(entry.getKey());
+        // }
+        // System.out.println(map);
+        return list;
+
+    }
+}
